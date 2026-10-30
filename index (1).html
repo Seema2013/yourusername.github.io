@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="kVQbh0wLcnuzKLxrtdz9nfT78ij0QmUCj32_om5x3Os" />
+<title>FamilyOS: one family, one plan, one smarter life</title>
+<meta name="description" content="FamilyOS is an early-stage app idea that helps busy families plan their day with less stress. Follow the project and help shape the first prototype.">
+<meta property="og:title" content="FamilyOS: one family, one plan, one smarter life">
+<meta property="og:description" content="An early-stage app idea that helps busy families plan their day with less stress.">
+<meta property="og:type" content="website">
+<style>
+:root {
+  --bg: #eef4f1;
+  --surface: #ffffff;
+  --ink: #17302b;
+  --muted: #4d6660;
+  --line: #cddbd6;
+  --accent: #f2b134;
+  --accent-ink: #3b2a00;
+  --done: #2f7d6b;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1d1a;
+    --surface: #17302b;
+    --ink: #e8f1ee;
+    --muted: #a6bdb6;
+    --line: #2c4741;
+    --accent: #f2b134;
+    --accent-ink: #2a1d00;
+    --done: #6fcdb6;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+header { padding: 22px 0; }
+header .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.brand { font: 700 1.25rem/1 Georgia, "Iowan Old Style", serif; text-decoration: none; }
+nav a { margin-left: 20px; text-decoration: none; color: var(--muted); font-size: .95rem; }
+nav a:hover { color: var(--ink); text-decoration: underline; }
+
+.hero { padding: 40px 0 72px; }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+h1 {
+  font: 700 clamp(2.4rem, 6vw, 4rem)/1.08 Georgia, "Iowan Old Style", serif;
+  letter-spacing: -.01em;
+  margin: 0 0 20px;
+}
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 34em; margin: 0 0 28px; }
+.btn {
+  display: inline-block; padding: 14px 24px; border-radius: 10px;
+  background: var(--accent); color: var(--accent-ink);
+  font-weight: 700; text-decoration: none;
+}
+.btn:hover { filter: brightness(.95); }
+.note { font-size: .9rem; color: var(--muted); margin-top: 14px; }
+
+/* The one memorable element: a sample of the "Today" screen */
+.today {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 26px 24px 22px;
+  max-width: 340px;
+  margin-left: auto;
+  box-shadow: 0 18px 40px rgba(23,48,43,.12);
+}
+.today h2 { font: 700 1.5rem/1.2 Georgia, serif; margin: 0 0 4px; }
+.today .sub { color: var(--muted); font-size: .9rem; margin: 0 0 18px; }
+.task { display: flex; gap: 12px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+.box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--ink); flex: none; }
+.task.done .box { background: var(--done); border-color: var(--done); }
+.task.done span { text-decoration: line-through; color: var(--muted); }
+.later { margin-top: 10px; padding: 12px 14px; border-radius: 12px; background: var(--bg); color: var(--muted); font-size: .92rem; }
+.today .tag { margin: 16px 0 0; font-size: .8rem; color: var(--muted); }
+
+section { padding: 56px 0; border-top: 1px solid var(--line); }
+section h2 { font: 700 clamp(1.6rem, 4vw, 2.2rem)/1.2 Georgia, serif; margin: 0 0 16px; max-width: 20em; }
+section p { max-width: 38em; margin: 0 0 16px; }
+.cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 24px; }
+.cols h3 { margin: 0 0 6px; font-size: 1.05rem; }
+.cols p { margin: 0; color: var(--muted); font-size: .98rem; }
+
+.status { list-style: none; padding: 0; margin: 24px 0 0; max-width: 38em; }
+.status li { display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); }
+.status li:first-child { border-top: 0; }
+.dot { width: 14px; height: 14px; border-radius: 50%; margin-top: 7px; flex: none; border: 2px solid var(--muted); }
+.dot.now { background: var(--accent); border-color: var(--accent); }
+.dot.ok { background: var(--done); border-color: var(--done); }
+.status strong { display: block; }
+.status span { color: var(--muted); font-size: .96rem; }
+
+footer { padding: 36px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+footer p { margin: 0 0 8px; max-width: 44em; }
+
+@media (max-width: 800px) {
+  .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
+  .today { margin: 0; }
+  .cols { grid-template-columns: 1fr; gap: 20px; }
+  nav a:first-child { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">FamilyOS</a>
+    <nav aria-label="Main">
+      <a href="#why">The problem</a>
+      <a href="#plan">What we’re building</a>
+      <a href="#progress">Progress</a>
+      <a href="#feedback">Help us</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>One family. One plan. One smarter life.</h1>
+        <p class="lead">FamilyOS is an early-stage app idea that helps busy families decide what matters today, so planning feels lighter instead of like one more job.</p>
+        <a class="btn" href="#feedback">Share your feedback</a>
+        <p class="note">FamilyOS is a project in progress. The app is not available to download yet.</p>
+      </div>
+
+      <div class="today" role="img" aria-label="Sample preview of a FamilyOS Today screen with three tasks and a later list">
+        <h2>Today</h2>
+        <p class="sub">Three things. That’s enough.</p>
+        <div class="task done"><div class="box"></div><span>School form</span></div>
+        <div class="task"><div class="box"></div><span>Pick up groceries</span></div>
+        <div class="task"><div class="box"></div><span>Prepare dinner</span></div>
+        <div class="later">Later, no rush: call the plumber, laundry</div>
+        <p class="tag">Design sketch with sample tasks. Not the working app.</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="why">
+    <div class="wrap">
+      <h2>Family plans live in too many places</h2>
+      <p>Messages, paper notes, calendars, school circulars, and memory. The person who holds it all together often spends the first part of every day deciding what to do next.</p>
+      <p>We think a planning app should take weight off, not add another system to maintain. We’re testing that idea with real families before building more.</p>
+    </div>
+  </section>
+
+  <section id="plan">
+    <div class="wrap">
+      <h2>What we’re building</h2>
+      <p>We’re starting small: one screen that shows what matters today, and a way to tick things off. The rest comes only after families tell us it’s useful.</p>
+      <div class="cols">
+        <div>
+          <h3>Daily plan</h3>
+          <p>Your most important tasks for today, with the rest set gently aside. First thing we’re building.</p>
+        </div>
+        <div>
+          <h3>Routines and weekly planning</h3>
+          <p>Repeating tasks and a view of the week ahead. Planned for later.</p>
+        </div>
+        <div>
+          <h3>Reminders and smart suggestions</h3>
+          <p>Nudges at useful times and plan suggestions that fit your day. Planned for later, and we’re still checking what’s practical.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="progress">
+    <div class="wrap">
+      <h2>Where we are right now</h2>
+      <ul class="status">
+        <li><div class="dot ok"></div><div><strong>Idea and plan written</strong><span>The problem, the audience, and the first features are defined.</span></div></li>
+        <li><div class="dot now"></div><div><strong>Building the first prototype</strong><span>A home screen and a Daily Plan, built with free tools.</span></div></li>
+        <li><div class="dot"></div><div><strong>Testing with 5 to 10 families</strong><span>Watching how people use it and listening to what gets in the way.</span></div></li>
+        <li><div class="dot"></div><div><strong>Improving what matters most</strong><span>One fix at a time, based on what we learn.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="feedback">
+    <div class="wrap">
+      <h2>Help shape FamilyOS</h2>
+      <p>We’d like to hear how your family plans its days now, and what’s frustrating about it. It takes a few minutes, and we only ask general questions. Please don’t share addresses, children’s details, or health information.</p>
+      <a class="btn" href="https://forms.gle/U3ZT4Yt2SYPjzRxQ8" target="_blank" rel="noopener">Answer a few questions</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>FamilyOS</strong> is an early-stage project and concept. It is not yet a registered company, and the app has not launched.</p>
+    <p>Features marked “planned” are ideas we’re exploring, not things you can use today.</p>
+  </div>
+</footer>
+
+</body>
+</html>
